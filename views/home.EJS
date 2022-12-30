@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Downloader- Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+      .header{
+        padding: 10rem 10rem 10rem 10rem;
+      }
+      .box{
+        background:url("../img/photo-1593005510329-8a4035a7238f\ \(2\).jpg");
+        background-size: 100% 100%;
+      }
+      .name{
+        font-family: "Bettrish";
+        font-size: xx-large;
+        padding: 1rem 0 0 1rem;
+        font-weight: 400;
+      }
+      .platform{
+        margin-bottom: 0;
+      }
+      @media(max-width:950px){
+        .header{
+          padding: 5rem 2rem 5rem 2rem;
+        }
+        .platform{
+            margin-bottom: 1rem;
+          }
+      }
+    </style>
+</head>
+<body>
+  <div class="container-fluid box text-center">
+    <div class="nav">
+      <div class="navbar-brand name">
+        Sanal Thomas
+      </div>
+    </div>
+    <div class="header">
+      <form name="frm" action="/download" method="post">
+        <div class="row">
+          <div class="col-lg-2">
+            <select class="form-select py-3 platform" id="platform" name="platform" onchange="changeval()">
+              <option value="youtube" selected>Youtube</option>
+              <option value="spotify">Spotify</option>
+            </select>
+          </div>
+          <div class="col-lg-10">
+            <input class="form-control py-3 px-3" type="text" name="vlink" placeholder="Paste the Link">
+          </div>
+        </div>
+        <input class="btn btn-primary my-4" type="submit" value="Submit Query">
+      </form>
+    </div>
+  </div>
+  <div id="steps" class="container">
+    <div class="steps d-flex flex-column align-items-center justify-content-center">
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="card-title">Step 1</h3>
+          <p class="card-text">Copy the link of the youtube video by pressing the 'Share' button on youtube</p>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="card-title">Step 2</h3>
+          <p class="card-text">Paste the copied link into the above field and click 'Submit Query' button</p>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="card-title">Step 3</h3>
+          <p class="card-text">Choose the right type and quality of the file and then click 'Download'.</p>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="card-title">Step 4</h3>
+          <p class="card-text">A new window will open, playing the video/audio that you requested. click on the three dots and click 'Download'.</p>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="card-title">Step 5</h3>
+          <p class="card-text">The file will be downloaded and will be available in your system.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function changeval(){
+      let platform = document.getElementById("platform").value;
+      console.log(platform);
+      if(platform=="youtube"){
+        let newsteps='<div class="steps d-flex flex-column align-items-center justify-content-center"><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 1</h3><p class="card-text">Copy the link of the youtube video by pressing the Share button on youtube</p></div></div><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 2</h3><p class="card-text">Paste the copied link into the above field and click Submit Query button</p></div></div><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 3</h3><p class="card-text">Choose the right type and quality of the file and then click Download.</p></div></div><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 4</h3><p class="card-text">A new window will open, playing the video/audio that you requested. click on the three dots and click Download.</p></div></div><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 5</h3><p class="card-text">The file will be downloaded and will be available in your system.</p></div></div></div>';
+        document.getElementById("steps").innerHTML=newsteps;
+      }
+      else if(platform=="spotify"){
+        let newsteps='<div class="steps d-flex flex-column align-items-center justify-content-center"><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 1</h3><p class="card-text">Copy the link of the spotify by pressing the Share button on spotify</p></div></div><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 2</h3><p class="card-text">Paste the copied link into the above field and click Submit Query button</p></div></div><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 3</h3><p class="card-text">Click on the download button available there.</p></div></div></div><div class="card mt-4"><div class="card-body"><h3 class="card-title">Step 4</h3><p class="card-text">The file will be downloaded and will be available in your system.</p></div></div></div>';
+        document.getElementById("steps").innerHTML=newsteps;
+      }
+    }
+  </script>
+</body>
+</html>

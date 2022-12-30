@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        a{
+            text-decoration: none;
+            color:white;
+        }
+        a:active{
+            color: white;
+        }
+        a:hover{
+            color: white;
+        }
+      .box{
+        background:url("../img/photo-1593005510329-8a4035a7238f.jpg");
+        padding: 10rem 10rem 10rem 10rem;
+        background-size: 100% 100%;
+      }
+      @media(max-width:480px){
+        .box{
+          padding: 5rem 2rem 5rem 2rem;
+        }
+      }
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid box text-center">
+        <form action="/download" method="post">
+            <div class="row">
+              <div class="col-lg-2">
+                <select class="form-select py-3" name="platform">
+                  <option value="youtube" selected>Youtube</option>
+                  <option value="spotify">Spotify</option>
+                </select>
+              </div>
+              <div class="col-lg-10">
+                <input class="form-control py-3 px-3" type="text" name="vlink" value=<%=query%>>
+              </div>
+            </div>
+            <input class="btn btn-primary my-4" type="submit" value="Submit Query">
+          </form>
+      </div>
+      <div class="text-center my-3">
+        <h2 class="h2">Download</h2>
+      </div>
+      <%if(platform=="youtube"){%>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="mb-2" src=<%=data.thumb%> width="100%">
+                <div class="h2">
+                    <%=data.title%>
+                </div>
+                <div class="text-muted mb-4">
+                    <%=data.description.substring(0,200)%>......
+                </div>
+            </div>
+            <div class="col-lg-6">
+
+            
+    <table class="table table-striped" border="1" cellpadding="5">
+        <tr>
+            <th>Type</th>
+            <th>Quality</th>
+            <th>size</th>
+            <th>Download</th>
+        </tr>
+        <%Object.entries(data.link).forEach(([key,val])=>{%>
+            <%if(key<100){%>
+            <tr>
+                <td>Video</td>
+                <td><%=val[3]%></td>
+                <%if(val[1]!=""){%>
+                <td><%=val[1]%></td>
+                <%}else{%>
+                    <td>Unknown</td>
+                    <%}%>
+                <td><button class="btn btn-primary"><a target="_blank" href=<%=val[0]%> download="file">Download</a></button></td>
+                
+            </tr>
+        <%}
+        if(key==140){%>
+        <tr>
+            <td>Audio</td>
+            <td></td>
+            <td><%=val[1]%></td>
+            <td><button class="btn btn-primary"><a href=<%=val[0]%> download="file">Download</a></button></td>
+        </tr>
+        <%}%>
+    <%});%>
+    </table>
+</div>
+</div>
+</div>
+<%}
+else if(platform=="spotify"){%>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="mb-2" src=<%=data.metadata.cover%> width="100%">
+                <div class="h2">
+                    <%=data.metadata.title%>
+                </div>
+                <div class="text-muted mb-4">
+                    <%=data.metadata.artists%>
+                </div>
+            </div>
+            <div class="col-lg-6">
+
+            
+    <table class="table table-striped" border="1" cellpadding="5">
+        <tr>
+            <th>Title</th>
+            <th>Artists</th>
+            <th>Download</th>
+        </tr>
+        <tr>
+            <td><%=data.metadata.title%></td>
+            <td><%=data.metadata.artists%></td>
+            <td><button class="btn btn-primary"><a href=<%=data.link%>>Download</a></button></td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>
+<%}%>
+</body>
+</html>
