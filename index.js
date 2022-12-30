@@ -1,5 +1,6 @@
 const express=require("express");
 const app = express();
+var path = require('path');
 const server=require("http").Server(app);
 const axios = require("axios");
 
@@ -7,6 +8,7 @@ PORT=process.env.PORT || 8000;
 
 
 app.use("/", express.static(__dirname + "/"));
+app.set('views', path.join(__dirname, '/views'));
 app.set("view engine","ejs");
 
 app.use(express.json());
