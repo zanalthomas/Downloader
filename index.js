@@ -6,7 +6,7 @@ const axios = require("axios");
 PORT=process.env.PORT || 8000;
 
 
-app.use("/", express.static(__dirname + "/"));
+//app.use("/", express.static(__dirname + "/"));
 
 app.set("view engine","ejs");
 
